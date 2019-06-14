@@ -1,0 +1,23 @@
+<style>
+</style>
+<template>
+  <ninePalaces :urls.sync="urls" :imageUrls.sync="imgs" :moduleNames.sync="names" :width.sync="30" >
+  </ninePalaces>
+</template>
+<script>
+  import wepy from 'wepy'
+  import NinePalaces from '../components/nine_palaces'
+  export default class EnIndex extends wepy.page {
+    components = {
+      ninePalaces: NinePalaces
+    }
+    config = {
+      navigationBarTitleText: 'HOME'
+    }
+    data = {
+      urls: ['/pages/student/ykt', '/pages/student/score', '/pages/student/cet'],
+      imgs: ['/images/core/ykt.png', '/images/core/cj.png', '/images/core/cet.png'],
+      names: ['one card', 'score', 'cet']
+    }
+  }
+</script>

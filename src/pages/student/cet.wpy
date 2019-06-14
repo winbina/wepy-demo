@@ -1,0 +1,75 @@
+<style>
+  .container{
+    background-color: #f0eff5;
+    display: flex;
+    flex-direction: column;
+    background-size: 100% auto;
+  }
+  .seperate-line{
+    display: flex;
+    flex-direction: row wrap ;
+    align-content: flex-start;
+    background: #fff;
+    min-height: 400rpx;
+    padding: 15rpx 10rpx 10rpx;
+    overflow: hidden;
+  }
+  .menu-core{
+    display: flex;
+    flex-direction: column wrap;
+    justify-content: center;
+    align-items: center;
+    width: 33.3%;
+    height: 200rpx;
+  }
+
+  .menu-item-img{
+    width: 120rpx;
+    height: 120rpx;
+    display: block;
+    margin: 15rpx auto;
+  }
+  .menu-item-name{
+    display: block;
+    margin: 1rpx;
+  }
+</style>
+<template>
+  <view class="container">
+    <form @submit="submits" @reset="resets">
+      <name label="姓名" key="name" type="text" placeholder="请输入姓名" tabs="{{changeName}}"></name>
+      <age label="年龄" key="age" type="number" placeholder="请输入年龄"></age>
+      <address label="地址" key="address" type="text" placeholder="请输入地址"></address>
+      <button class="btn" formType="submit">
+        <view>提交</view>
+      </button>
+    </form>
+  </view>
+</template>
+<script>
+  import wepy from 'wepy'
+  import Input from '../../components/input'
+  export default class EnIndex extends wepy.page {
+    config = {
+      navigationBarTitleText: 'CET'
+    }
+    components = {
+      name: Input,
+      age: Input,
+      address: Input
+    }
+    data = {
+    }
+    methods = {
+      submits(e) {
+        console.log(e)
+      },
+      resets(e) {
+        console.log(e)
+      },
+      changeName(val) {
+        console.log(val)
+      }
+    }
+  }
+</script>

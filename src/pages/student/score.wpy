@@ -1,0 +1,57 @@
+<style>
+  .container{
+    background-color: #f0eff5;
+    display: flex;
+    flex-direction: column;
+    background-size: 100% auto;
+  }
+  .seperate-line{
+    display: flex;
+    flex-direction: row wrap ;
+    align-content: flex-start;
+    background: #fff;
+    min-height: 400rpx;
+    padding: 15rpx 10rpx 10rpx;
+    overflow: hidden;
+  }
+  .menu-core{
+    display: flex;
+    flex-direction: column wrap;
+    justify-content: center;
+    align-items: center;
+    width: 33.3%;
+    height: 200rpx;
+  }
+
+  .menu-item-img{
+    width: 120rpx;
+    height: 120rpx;
+    display: block;
+    margin: 15rpx auto;
+  }
+  .menu-item-name{
+    display: block;
+    margin: 1rpx;
+  }
+</style>
+<template>
+  <view class="container">
+    <view class="seperate-line">
+      <navigator class="menu-core">
+        <image src="/images/core/cj.png" class="menu-item-img"></image>
+        <text class="menu-item-name">score</text>
+      </navigator>
+    </view>
+  </view>
+</template>
+<script>
+  import wepy from 'wepy'
+  export default class EnIndex extends wepy.page {
+    config = {
+      navigationBarTitleText: 'SCORE'
+    }
+    data = {
+      urls: ['pages/ytk']
+    }
+  }
+</script>

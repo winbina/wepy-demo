@@ -1,0 +1,110 @@
+<style>
+  /**index.wxss**/
+  .container{
+    padding-bottom: 0;
+    background-color: #f0eff5;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: bottom center;
+  }
+  .main-core{
+    display: flex;
+    flex-flow: row wrap;
+    align-content: flex-start;
+    background: #fff;
+    border-bottom: 1rpx solid #e5e5e5;
+    padding: 15rpx 10rpx 10rpx;
+    min-height: 350rpx;
+    overflow: hidden
+  }
+  .main-core-item{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    height: 170rpx;
+  }
+  .core-item-icon{
+    display: block;
+    width: 85rpx;
+    height: 85rpx;
+    margin: 15rpx auto;
+  }
+  .core-item-name{
+    display: block;
+    margin: 1rpx;
+  }
+  .main-swiper{
+    height: 390rpx;
+    margin-bottom: 20rpx;
+  }
+</style>
+<template>
+  <view class="container">
+    <swiper class="main-swiper" indicator-dots="true" indicator-active-color="#73b4ef">
+      <swiper-item class="main-core" wx:for="{{menus}}" wx:for-item="menu" wx:key="url">
+        <block wx:for="{{menu}}" wx:key="id">
+          <navigator class="main-core-item" url="{{item.url}}" style="width:{{width}}%">
+            <image class="core-item-icon" src="{{item.images}}"></image>
+            <text class="core-item-name">{{item.moduleName}}</text>
+          </navigator>
+        </block>
+      </swiper-item>
+    </swiper>
+  </view>
+</template>
+<script>
+  import wepy from 'wepy'
+  export default class NinePalaces extends wepy.component {
+    data = {
+      menus: []
+    }
+    props = {
+      imageUrls: {
+        type: Object,
+        default: []
+      },
+      urls: {
+        type: Object,
+        default: []
+      },
+      width: {
+        type: [Number, String],
+        default: 33.3
+      },
+      moduleNames: {
+        type: Object,
+        default: []
+      }
+    }
+    onLoad () {
+      let _width = this.width
+      let _lineWeight = 100 / _width
+      let _menus = []
+      let _subMenus = []
+      let _index = 1
+      for (let i = 0; i < this.urls.length; i++) {
+        let item = {}
+        item.url = this.urls[i]
+        item.images = this.imageUrls[i]
+        item.moduleName = this.moduleNames[i]
+        item.id = i
+        if (_index < _lineWeight) {
+          _subMenus.push(item)
+          _index++
+        } else {
+          _menus.push(_subMenus)
+          _subMenus = []
+          _index = 1
+          i--
+        }
+      }
+      if (_subMenus.length > 0) {
+        _menus.push(_subMenus)
+      }
+      this.menus = _menus
+      this.$apply()
+    }
+  }
+</script>
